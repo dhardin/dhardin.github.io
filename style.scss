@@ -27,6 +27,13 @@ header {
   padding-top: 3em !important;
   @include mobile {
     padding-top: 3em !important;
+  } 
+}
+
+header .space {
+  @include mobile {
+    display: inline-block;
+    width: 2em;
   }
 }
 
