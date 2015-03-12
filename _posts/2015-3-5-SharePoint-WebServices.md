@@ -67,3 +67,21 @@ Now if we click on one of the operations (e.g., GetListItems), the SOAP web serv
 ![Image of Get List Items SOAP Web Service Operation]
 (../../../../images/2015-3-6-SharePoint_List_Reading_Writing/getlistitems.png)
 ](../../../../images/2015-3-6-SharePoint_List_Reading_Writing/getlistitems.png)
+
+As previoulsy mentioned, the XML shown defines the SOAP request and response bodies.  What does this mean though?  Well, the SOAP request is what you will bundle in an Ajax call and send to the server and the SOAP response is how the XML will be packaged when returned (if successfully...more on that in another post) back to you.
+
+"But wait, what about this SOAP version 1.1 or 1.2?"
+
+Good question.  These variantions in SOAP reqeusts have a few differences besides a few attribute changes between the SOAP envelopes.
+
+## SOAP 1.1 vs 1.2
+First, read this excellent response on [Stack Overflow](http://stackoverflow.com/a/8588362).
+
+Now, which one to choose?  Well, you can technically choose either.  But, after reading the differences, if writing a new application, I'd go with 1.2 for security and optimization reasons.  SOAP 1.1 is there I beleive for legacy support reasons.
+
+Now that's really it for Web Services.  Please leave a comment or question!
+
+
+Cheers,
+
+Dustin
