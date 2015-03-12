@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Hellow World!
+title: Hello World!
 ---
 
 Well, this is officially the first blog using Jekyll and Github Pages.  Yay! :]
