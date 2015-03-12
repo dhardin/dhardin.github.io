@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Reading/Writing to a SharePoint list
-description: Front End Web Development; SharePoint; Web Services; SOAP; XML; JavaScript; jQuery
+tags: [Front End Web Development SharePoint, Web Service, SOAP; XML, JavaScript, jQuery]
 ---
 
 First we'll need a helper method for parsing XML returned from our web service calls:
