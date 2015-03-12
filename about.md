@@ -4,12 +4,13 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Hey there, I'm Dustin :)  
 
-### More Information
+Here's some things you should know about me:
+- Front End Web Developer
+- Lifter of heavy things
+- Explorer
 
-A place to include any other types of information that you'd like to include about yourself.
+## Contact me
 
-### Contact me
-
-[email@domain.com](mailto:email@domain.com)
+[dhardin07@gmail.com](mailto:dhardin07@gmail.com)
