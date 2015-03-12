@@ -27,18 +27,35 @@ In order to acquire the services at your disposal, you'll first need to get a gr
 
 | Service               | Description                                                                                                                        |
 |-----------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| Administration        | Provides methods for managing a deployment ofWindows SharePoint Services, such as for creating or deleting sites.                  |
-| Alerts                | Provides methods for working with alerts for list items in a SharePoint site.                                                      |
-| Document Workspace    | Exposes the Document Workspace Web service and its eleven methods for managing Document Workspace sites and the data they contain. |
-| Forms                 | Provides methods for returning forms used in the user interface when working with the contents of a list.                          |
-| Imaging               | Provides methods that enable you to create and manage picture libraries.                                                           |
-| List Data Retrieval   | Provides a method for performing queries against lists in Microsoft Windows SharePoint Services.                                   |
-| Lists                 | Provides methods for working with lists and list data.                                                                             |
-| Meetings              | Provides methods that enable you to create and manage Meeting Workspace sites.                                                     |
-| Permissions           | Provides methods for working with the permissions for a site or list.                                                              |
-| Site Data             | Provides methods that return metadata or list data from sites or lists in Microsoft Windows SharePoint Services.                   |
-| Sites                 | Provides a method for returning information about the site templates for a site collection.                                        |
-| Users and Groups      | Provides methods for working with users, site groups, and cross-site groups.                                                       |
-| Versions              | Provides methods for working with file versions.                                                                                   |
-| Views                 | Provides methods for working with views of lists.     | Web Part Pages        | Provides the methods to send information to and retrieve information from XML Web services.                                        |
-| Webs                  | Provides methods for working with sites and subsites.                                                                              |
+| [Administration](https://msdn.microsoft.com/en-us/library/dd586087(v=office.11).aspx)        | Provides methods for managing a deployment ofWindows SharePoint Services, such as for creating or deleting sites.                  |
+| [Alerts](https://msdn.microsoft.com/en-us/library/dd586093(v=office.11).aspx)                | Provides methods for working with alerts for list items in a SharePoint site.                                                      |
+| [Document Workspace](https://msdn.microsoft.com/en-us/library/dd586103(v=office.11).aspx)    | Exposes the Document Workspace Web service and its eleven methods for managing Document Workspace sites and the data they contain. |
+| [Forms](https://msdn.microsoft.com/en-us/library/dd586110(v=office.11).aspx)                 | Provides methods for returning forms used in the user interface when working with the contents of a list.                          |
+| [Imaging](https://msdn.microsoft.com/en-us/library/dd586123(v=office.11).aspx)               | Provides methods that enable you to create and manage picture libraries.                                                           |
+| [List Data Retrieval](https://msdn.microsoft.com/en-us/library/dd586096(v=office.11).aspx)   | Provides a method for performing queries against lists in Microsoft Windows SharePoint Services.                                   |
+| [Lists](https://msdn.microsoft.com/en-us/library/dd586136(v=office.11).aspx)                 | Provides methods for working with lists and list data.                                                                             |
+| [Meetings](https://msdn.microsoft.com/en-us/library/dd586165(v=office.11).aspx)              | Provides methods that enable you to create and manage Meeting Workspace sites.                                                     |
+| [Permissions](https://msdn.microsoft.com/en-us/library/dd586179(v=office.11).aspx)           | Provides methods for working with the permissions for a site or list.                                                              |
+| [Site Data](https://msdn.microsoft.com/en-us/library/dd586184(v=office.11).aspx)             | Provides methods that return metadata or list data from sites or lists in Microsoft Windows SharePoint Services.                   |
+| [Sites](https://msdn.microsoft.com/en-us/library/dd586187(v=office.11).aspx)                 | Provides a method for returning information about the site templates for a site collection.                                        |
+| [Users and Groups](https://msdn.microsoft.com/en-us/library/dd586193(v=office.11).aspx)      | Provides methods for working with users, site groups, and cross-site groups.                                                       |
+| [Versions](https://msdn.microsoft.com/en-us/library/dd586197(v=office.11).aspx)              | Provides methods for working with file versions.                                                                                   |
+| [Views](https://msdn.microsoft.com/en-us/library/dd586201(v=office.11).aspx)                 | Provides methods for working with views of lists.     | [Web Part Pages](https://msdn.microsoft.com/en-us/library/dd586207(v=office.11).aspx)        | Provides the methods to send information to and retrieve information from XML Web services.                                        |
+| [Webs](https://msdn.microsoft.com/en-us/library/dd586211(v=office.11).aspx)                  | Provides methods for working with sites and subsites.                                                                              |
+
+
+Now that you have a list of web services available to you, you can now dig into the construction of SOAP requests and responses.
+
+Let's go ahead and navigate to any of the above web services on your SharePoint portal:
+
+http://[domain]/[sites/][Site_Name/][Subsite_Name/]_vti_bin/Service_Name.asmx
+
+So if we navigate to the *list* service, we'll get the following page of list operations:
+
+![Image of list web service operations]
+(../images/2015-3-6-SharePoint_List_Reading_Writing/lists.png)
+
+Now if we click on one of the operations (e.g., GetListItems), the SOAP web service request and response body will be displayed in XML format:
+
+![Image of Get List Items SOAP Web Service Operation]
+(../images/2015-3-6-SharePoint_List_Reading_Writing/lists_getListItems.png)
