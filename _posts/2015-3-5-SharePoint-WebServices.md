@@ -1,6 +1,7 @@
 ---
 layout: post
 title: SharePoint Web Services
+description: Front End Web Development; SharePoint; Web Services; SOAP; XML; 
 ---
 
 The first thing you need to know about developing front end web applications for SharePoint are WebServices.
