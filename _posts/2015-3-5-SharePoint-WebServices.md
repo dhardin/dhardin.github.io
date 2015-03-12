@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SharePoint WebServices
+title: SharePoint Web Services
 ---
 
 The first thing you need to know about developing front end web applications for SharePoint are WebServices.
