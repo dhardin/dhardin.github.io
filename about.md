@@ -7,9 +7,9 @@ permalink: /about/
 Hey there, I'm Dustin :)  
 
 Here's some things you should know about me:
-- Front End Web Developer
-- Lifter of heavy things
-- Explorer
+* Front End Web Developer
+* Lifter of heavy things
+* Explorer
 
 ## Contact me
 
