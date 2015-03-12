@@ -10,6 +10,9 @@ Here's some things you should know about me:
 * Front End Web Developer
 * Lifter of heavy things
 * Explorer
+*   Red
+*   Green
+*   Blue
 
 ## Contact me
 
