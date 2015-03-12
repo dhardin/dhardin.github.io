@@ -7,6 +7,7 @@ The first thing you need to know about developing front end web applications for
 
 ##What is a Web Service?
 >The term Web services describes a standardized way of integrating Web-based applications using the XML, SOAP, WSDL and UDDI open standards over an Internet protocol backbone. XML is used to tag the data, SOAP is used to transfer the data, WSDL is used for describing the services available and UDDI is used for listing what services are available. Used primarily as a means for businesses to communicate with each other and with clients, Web services allow organizations to communicate data without intimate knowledge of each other's IT systems behind the firewall.
+
 *Source*: [webopedia](http://www.webopedia.com/TERM/W/Web_Services.html)
 
 Great, so we have an understanding of web services.  But how does this pair up with writing SharePoint front end web applications?  SharePoint utilizes SOAP reqeusts.
@@ -15,6 +16,7 @@ Great, so we have an understanding of web services.  But how does this pair up w
 >The Windows SharePoint Services Web Service provided by the Microsoft.SharePoint.SoapServer namespace has numerous methods for accessing content on a site, including methods for working with lists or site data, as well as methods for customizing meetings, imaging, document workspaces, or search.
 The Simple Object Access Protocol (SOAP) interfaces used in these services provide .NET developers with object models for creating solutions that work with Microsoft Windows SharePoint Services remotely from a client or custom application. The interfaces are integrated with the server-side object models of the Windows SharePoint Services assembly, and their design has been optimized to reduce the number of roundtrips transacted between client computer and server.
 Web services provide their functionality through the _vti_bin virtual directory, which maps to the Local_Drive:\Program Files\Common Files\Microsoft Shared\Web Server Extensions\60\ISAPI physical directory in the file system.
+
 *Source*: [MSDN](https://msdn.microsoft.com/en-us/library/dd587241(v=office.11).aspx)
 
 So where do we find which SOAP services are available to us?  Well, we'll cover that next.
