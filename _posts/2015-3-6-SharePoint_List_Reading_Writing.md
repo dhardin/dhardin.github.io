@@ -4,7 +4,13 @@ title: Reading/Writing to a SharePoint list
 tags: [Front End Web Development SharePoint, Web Service, SOAP; XML, JavaScript, jQuery]
 ---
 
-First we'll need a helper method for parsing XML returned from our web service calls:
+<div class="panel">
+    <h5><span class="glyphicon glyphicon-warning-sign warning"></span>CAUTION</h5>
+    Before venturing on further, if you are unfamiliar with web services and thier operations, please refer to the previous post: <a href="http://dhardin.github.io/2015/03/05/SharePoint-WebServices/">SharePoint Web Services</a>
+</div>
+
+
+First we'll need a helper method for extracting the XML nodes returned from our web service calls:
 <script src="https://gist.github.com/dhardin/722d1c1182c798a366f3.js"></script>
 
 Now, let's construct our function to get list items from the SharePoint list:
