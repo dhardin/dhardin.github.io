@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta charset="utf-8" />
+    <title>Real Commission</title>
+    <!-- Third Party Style Sheets -->
+    <link rel="stylesheet" type="text/css" href="lib/foundation/css/foundation.css" />
+    <link rel="stylesheet" type="text/css" href="lib/datatables/media/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="lib/datatables/extensions/responsive/css/dataTables.responsive.css" />
+    <!-- Our Style Sheets -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Third Party JavaScript -->
+    <script src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/google/platform.js"></script>
+    <script type="text/javascript" src="lib/google/client.js"></script>
+    <script type="text/javascript" src="lib/underscore.js"></script>
+    <script type="text/javascript" src="lib/backbone.js"></script>
+    <script type="text/javascript" src="lib/foundation/js/foundation.min.js"></script>
+    <script type="text/javascript" src="lib/foundation/js/vendor/modernizr.js"></script>
+    <script type="text/JavaScript" src="lib/highcharts/js/highcharts.js"></script>
+    <script type="text/javascript" src="lib/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="lib/datatables/extensions/responsive/js/dataTables.responsive.min.js"></script>
+</head>
+
+<body>
+    <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
+            <nav class="tab-bar">
+                <section class="middle tab-bar-section">
+                    <h1 class="header"><a href="#"><img id="logo" alt="Brand" src="img/logo.png"> Real Commission</a></h1>
+                </section>
+                <section class="right-small">
+                    <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
+                </section>
+            </nav>
+            <aside class="right-off-canvas-menu">
+                <ul class="off-canvas-list">
+                    <li>
+                        <label>Directory</label>
+                    </li>
+                    <li><a href="#commissions/edit/">New Commission</a>
+                    </li>
+                    <li><a href="#commissions/metrics/">Metrics</a>
+                    </li>
+                    <li><a href="#commissions/">Commissions</a>
+                    </li>
+                </ul>
+            </aside>
+            <section class="main-section">
+                <ul class="breadcrumbs">
+                </ul>
+                <div id="main"></div>
+            </section>
+            <a class="exit-off-canvas"></a>
+        </div>
+    </div>
+    <!-- TEMPLATES -->
+    <script type="text/template" id="home-template">
+        <ul class="stack button-group">
+            <li><a href="#commissions/edit/" class="button">New Commission</a></li>
+            <li><a href="#commissions/metrics/" class="button">Metrics</a></li>
+            <li><a href="#commissions/" class="button">Commissions</a></li>
+        </ul>
+    </script>
+    <script type="text/template" id="commission-template">
+        <form>
+            <div class="row">
+                <div class="medium-6 large-4 columns">
+                    <label>Date
+                        <input type="date" placeholder="large-4.columns" class="date" value="<%=date%>" />
+                    </label>
+                </div>
+                <div class="medium-6 large-4 columns">
+                    <label>First Name
+                        <input type="text" placeholder="large-4.columns" class="first_name" value="<%=first_name%>" />
+                    </label>
+                </div>
+                <div class="medium-6 large-4 columns">
+                    <label>Last Name
+                        <input type="text" placeholder="large-4.columns" class="last_name" value="<%=last_name%>" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-6 large-3 columns">
+                    <label>Address
+                        <input type="text" placeholder="large-4.columns" class="address" value="<%=address%>" />
+                    </label>
+                </div>
+                <div class="medium-6 large-3 columns">
+                    <label>City
+                        <input type="text" placeholder="large-4.columns" class="city" value="<%=city%>" />
+                    </label>
+                </div>
+                <div class="medium-6 large-3 columns">
+                    <label>Zip
+                        <input type="text" placeholder="large-4.columns" class="zip" value="<%=zip%>" />
+                    </label>
+                </div>
+                <div class="medium-6 large-3 columns">
+                    <label>State
+                        <select class="state">
+                            <option value="N/A">N/A</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="DC">District Of Columbia</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-6 columns">
+                    <div class="row collapse">
+                        <label><span data-tooltip aria-haspopup="true" class="has-tip" title="The price at which the home is sold">Price</span></label>
+                        <div class="small-2 columns">
+                            <span class="prefix">$</span>
+                        </div>
+                        <div class="small-10 columns">
+                            <input type="number" class="price" pattern="^\d*(\.\d{2}$)?" min="0" placeholder="0.00" value=<%=price%> />
+                        </div>
+                    </div>
+                </div>
+                <div class="medium-6 columns">
+                    <div class="row collapse">
+                        <label><span data-tooltip aria-haspopup="true" class="has-tip" title="Fee earned based on a flat amount.">Fee</span></label>
+                        <div class="small-2 columns">
+                            <span class="prefix">$</span>
+                        </div>
+                        <div class="small-10 columns">
+                            <input type="number" class="fee" pattern="^\d*(\.\d{2}$)?" min="0" placeholder="0.00" value=<%=fee%> />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-4 columns">
+                    <div class="row collapse">
+                        <label><span data-tooltip aria-haspopup="true" class="has-tip" title="Deductions the Broker or Franchise takes out of a transaction's commission. Typically until a Cap it hit.">Commission</span></label>
+                        <div class="small-10 columns">
+                            <input type="number" class="commission" pattern="^\d*(\.\d{2}$)?" min="0" max="100" placeholder="0.00" value=<%=commission%> />
+                        </div>
+                        <div class="small-2 columns">
+                            <span class="postfix">%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="medium-4 columns">
+                    <div class="row collapse">
+                        <label><span data-tooltip aria-haspopup="true" class="has-tip" title="Percentage Broker takes from commissions until agreed upon amount is paid.">Cap</span></label>
+                        <div class="small-10 columns">
+                            <input type="number" class="cap" pattern="^\d*(\.\d{2}$)?" min="0" max="100" placeholder="0.00" value=<%=cap%> />
+                        </div>
+                        <div class="small-2 columns">
+                            <span class="postfix">%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="medium-4 columns">
+                    <div class="row collapse">
+                        <label><span data-tooltip aria-haspopup="true" class="has-tip" title="Percentage Franchise takes from commissions until agreed upon amount is paid.">Royalty</span></label>
+                        <div class="small-10 columns">
+                            <input type="number" class="royalty" pattern="^\d*(\.\d{2}$)?" min="0" max="100" placeholder="0.00" value=<%=royalty%> />
+                        </div>
+                        <div class="small-2 columns">
+                            <span class="postfix">%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-3 columns">
+                    <div class="row collapse">
+                        <label>Cap Payed</label>
+                        <div class="small-2 columns">
+                            <span class="prefix">$</span>
+                        </div>
+                        <div class="small-10 columns">
+                            <input type="number" class="cap_payed" disabled pattern="^\d*(\.\d{2}$)?" min="0" placeholder="0.00" value=<%=cap_payed%> />
+                        </div>
+                    </div>
+                </div>
+                <div class="medium-3 columns">
+                    <div class="row collapse">
+                        <label>Royalty Payed</label>
+                        <div class="small-2 columns">
+                            <span class="prefix">$</span>
+                        </div>
+                        <div class="small-10 columns">
+                            <input type="number" class="royalty_payed" disabled pattern="^\d*(\.\d{2}$)?" min="0" placeholder="0.00" value=<%=royalty_payed%> />
+                        </div>
+                    </div>
+                </div>
+                <div class="medium-3 columns">
+                    <div class="row collapse">
+                        <label><span data-tooltip aria-haspopup="true" class="has-tip" title="Total income BEFORE splits and deductions with broker.">Gross Income</span></label>
+                        <div class="small-2 columns">
+                            <span class="prefix">$</span>
+                        </div>
+                        <div class="small-10 columns">
+                            <input type="number" class="gross_income" disabled pattern="^\d*(\.\d{2}$)?" min="0" placeholder="0.00" value=<%=gross_income%> />
+                        </div>
+                    </div>
+                </div>
+                <div class="medium-3 columns">
+                    <div class="row collapse">
+                        <label><span data-tooltip aria-haspopup="true" class="has-tip" title="Total income AFTER splits and deductions with broker.">Banked</span></label>
+                        <div class="small-2 columns">
+                            <span class="prefix">$</span>
+                        </div>
+                        <div class="small-10 columns">
+                            <input type="number" class="banked" disabled pattern="^\d*(\.\d{2}$)?" min="0" placeholder="0.00" value=<%=banked%> />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="button-group even-3">
+                <li><a class="button save">Save</a></li>
+                <li><a class="button alert split">Delete <span data-dropdown="drop"></span></a>
+                    <br>
+                    <ul id="drop" class="f-dropdown" data-dropdown-content>
+                        Are you sure?
+                        <br>
+                        <li><a class="delete">Yes</a></li>
+                        <li><a>No</a></li>
+                    </ul>
+                </li>
+                <li><a class="button secondary cancel">Cancel</a></li>
+            </ul>
+            <div data-alert class="notification alert-box info radius">
+                <span class="notification-text"></span>
+                <a href="#" class="close">&times;</a>
+            </div>
+        </form>
+    </script>
+    <script type="text/template" id="commissions-template">
+        <ul class="accordion" data-accordion>
+            <li class="accordion-navigation">
+                <a href="#panel1a">Filters</a>
+                <div id="panel1a" class="content">
+                    <div class="row">
+                        <div class="medium-6 columns">
+                            <label>Start Date
+                                <input type="date" class="startDate" />
+                            </label>
+                        </div>
+                        <div class="medium-6 columns">
+                            <label>End Date
+                                <input type="date" class="endDate" />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="large-12 columns">
+                        <label>Pending Status</label>
+                        <input type="radio" name="pending" value="all" id="all" checked>
+                        <label for="all">All</label>
+                        <input type="radio" name="pending" value=true id="pending">
+                        <label for="pending">Pending</label>
+                        <input type="radio" name="pending" value=false id="non_pending">
+                        <label for="non_pending">Non-Pending</label>
+                    </div>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="large-12 columns">
+                <table id="table" class="responsive" cellSpacing="0" width="100%"></table>
+            </div>
+        </div>
+        </div>
+    </script>
+    <script type="text/template" id="metrics-template">
+        <div class="row">
+            <div class="large-12 columns">
+                <a href="#" class="button" data-dropdown="drop">Fiscal Year Filter &raquo;</a>
+                <ul id="drop" class="annual-sales-filter f-dropdown" data-dropdown-content>
+                    <li><a>All</a></li>
+                </ul>
+                <div class="annual-sales-chart"></div>
+            </div>
+        </div>
+    </script>
+    <script type="text/template" id="fetch-template">
+        <div class="text-center library-message">
+            <p>Fetching data...</p>
+        </div>
+    </script>
+    <script type="text/template" id="error-template">
+        <div class="text-center">
+            <h1>Error</h1>
+            <h1 class="subheader">Sorry, but the requested page does not exist :(</h1>
+        </div>
+    </script>
+    <!-- Models -->
+    <script src="js/models/commission.js"></script>
+    <script src="js/models/commissions.js"></script>
+    <!-- Views -->
+    <script src="js/views/home.js"></script>
+    <script src="js/views/commission.js"></script>
+    <script src="js/views/commissions.js"></script>
+    <script src="js/views/metrics.js"></script>
+    <script src="js/views/fetchingData.js"></script>
+    <script src="js/views/error.js"></script>
+    <script src="js/views/app.js"></script>
+    <!-- Application -->
+    <script src="js/data.js"></script>
+    <script src="js/data.test.js"></script>
+    <script src="js/utility.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+    <!-- Router -->
+    <script src="js/routes/routes.js"></script>
+    <script type="text/javascript">
+    $(document).foundation({
+        offcanvas: {
+            // Sets method in which offcanvas opens.
+            // [ move | overlap_single | overlap ]
+            open_method: 'move',
+            // Should the menu close when a menu link is clicked?
+            // [ true | false ]
+            close_on_click: true
+        }
+    });
+    </script>
+</body>
+
+</html>
