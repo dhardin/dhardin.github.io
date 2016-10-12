@@ -7,6 +7,9 @@ tags: [Front End Web Development SharePoint, Web Service, SOAP; XML, JavaScript,
 ###CAUTION!
 >Before venturing on further, if you are unfamiliar with web services and thier operations, please refer to the previous post: [SharePoint Web Services](http://dhardin.github.io/2015/03/05/SharePoint-WebServices)
 
+* auto-gen TOC:
+{:toc}
+
 Making web service calls through the SharePoint API can seem pretty daughnting if you are new to it.  There are varoius tools out there that help make this process less painful through abstraction and hiding all the details involved with building SOAP envelopes and parsing returned results.
 
 I beleive its best to understand what goes on behind the curtains first so that we can understand exactly what our code is doing.
@@ -108,7 +111,7 @@ And here are the security considerations provided by WC3 in regards to both POST
 
 Taking both of these methods into consideration, we will be using GET methods for fetching data from a SharePoint list/library and POST for updating our lists/libraries.  You will see this when we go over requests in the next section.
 
-##Request/Response
+##Reading from a SharePoint List
 To perform any sort of data read/write in our SharePoint environment, we must construct a HTTP header, which is packaged and sent to the server via an Ajax call for processing.
 
 First we'll start with the SOAP envelope that performs the requested function and query to perform on the designated list.  We'll delve further into CAML queries in another post since they require a bit more patience.
@@ -199,3 +202,5 @@ From here, we now have an object that contains all of the fields returned from t
 ```
 
 That's it!  From here you can do what you need to with the returned data in your callback function.  Don't forget to pass the results to the callback arguments!
+
+##Writing to a SharePoint List
