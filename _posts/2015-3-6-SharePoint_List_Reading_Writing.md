@@ -171,3 +171,31 @@ We also go ahead and use a method to help us extract data from the returned XML.
         });
     }; // End $.fn.filterNode
 ```
+
+From here, we now have an object that contains all of the fields returned from the SharePoint list along with other returned data.  Personally, I prefer parsing this data into an object that contains just the column data that's easily accessible.  This of course is optional and is an algorith with a complexity of O(N).
+
+```javascript
+// Begin Utility Method /processData/
+     processData = function(results) {
+        var data = [{}],
+            attrObj = {},
+            i, j, attribute;
+        //repackage data into an array which each index
+        //is an object with key value pairs
+        for (i = 0; i < results.length; i++){
+            attrObj = {};
+            if(!results[i].attributes){
+                continue;
+            }
+            for (j = 0; j < results[i].attributes.length; j++){
+                attribute = results[i].attributes[j];
+                attrObj[attribute.name] = attribute.value;
+            }
+            data.push(attrObj);
+        }
+        return data;
+    };
+   // End Utility Method /processData/
+```
+
+That's it!  From here you can do what you need to with the returned data in your callback function.  Don't forget to pass the results to the callback arguments!
