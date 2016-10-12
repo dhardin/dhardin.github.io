@@ -2,6 +2,7 @@
 layout: post
 title: Reading/Writing to a SharePoint list
 tags: [Front End Web Development SharePoint, Web Service, SOAP; XML, JavaScript, jQuery]
+toc: true
 ---
 
 ###CAUTION!
