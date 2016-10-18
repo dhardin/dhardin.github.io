@@ -61,7 +61,7 @@ jekyll-mentions:
 #
 
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 permalink: pretty
 
 # The release of Jekyll Now that you're using
