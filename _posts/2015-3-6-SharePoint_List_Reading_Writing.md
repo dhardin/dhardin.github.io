@@ -4,19 +4,19 @@ title: Reading/Writing to a SharePoint list
 tags: [Front End Web Development SharePoint, Web Service, SOAP; XML, JavaScript, jQuery]
 ---
 
-###CAUTION!
+### CAUTION!
 >Before venturing on further, if you are unfamiliar with web services and thier operations, please refer to the previous post: [SharePoint Web Services](http://dhardin.github.io/2015/03/05/SharePoint-WebServices)
 
 Making web service calls through the SharePoint API can seem pretty daughnting if you are new to it.  There are varoius tools out there that help make this process less painful through abstraction and hiding all the details involved with building SOAP envelopes and parsing returned results.
 
 I beleive its best to understand what goes on behind the curtains first so that we can understand exactly what our code is doing.
 
-###SOAP Envelope
+### SOAP Envelope
 SOAP envelopes are constructed and identify things such as list GUIDs, items to be updated, etc.  The body of the envelope itself is determined by the web service SOAP operation that you are performing.
 
 In this case, we are calling the GetListItems SOAP operation.  Navigating to the appropriate web service operation page will provide you with the required SOAP body and parameters.
 
-####CAML Query
+#### CAML Query
 Collaborative Markup Language (CAML) is an XML based language used for querying and updating SharePoint objects.
 
 You may use CAML queries to narrow down the returned results from the SOAP operations that you perform.  Why would you want to filter results with a complex query versus filtering on the client side?  Well, this is because the client side filtering will be significantly slower as the client browser is a single threaded environment and code is run in a run-time blocking manner by default.  You can work around this of course using JavaScript asynchrous tricks such as setTimeout (I'll be addressing this in another post).
@@ -25,7 +25,7 @@ For this example, we will not dive into CAML queries, but deal with returning al
 
 For further reading on CAML queries and the various schemas, please check out the reference on [MSDN](https://msdn.microsoft.com/en-us/library/office/ms462365).
 
-###AJAX
+### AJAX
 Asynchronous JavaScript and XML (AJAX) is the method we will use to communicate with a server to request or submit data.  There are a few ways that these requests can be made, but we will only be using the method provided  by jQuery as it undoubtedly makes our job easier.
 
 The basic form of our Ajax calls will look like the following:
@@ -59,12 +59,12 @@ Where:
 
 To see a full list of settings and list cases, please view the reference [here](http://api.jquery.com/jquery.ajax/).
 
-####Get vs Post
+#### Get vs Post
 GET and POST are the two methods that we will use in our AJAX requests depending on what we are trying to accoplish.  However, it is important to understand the fundamental differences between the two methods as well as security considerations when handling either method.
 
 First we will look at the definitions of POST and GET methods provided by World Wide Consortium (W3C):
 
->####[9.3 GET](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.3)
+>#### [9.3 GET](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.3)
 
 >The GET method means retrieve whatever information (in the form of an entity) is identified by the Request-URI. If the Request-URI refers to a data-producing process, it is the produced data which shall be returned as the entity in the response and not the source text of the process, unless that text happens to be the output of the process.
 
@@ -76,7 +76,7 @@ First we will look at the definitions of POST and GET methods provided by World 
 
 >See section 15.1.3 for security considerations when used for forms.
 
->####[9.5 POST](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.3)
+>#### [9.5 POST](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.3)
 
 >The POST method is used to request that the origin server accept the entity enclosed in the request as a new subordinate of the resource identified by the Request-URI in the Request-Line. POST is designed to allow a uniform method to cover the following functions:
 
@@ -98,7 +98,7 @@ First we will look at the definitions of POST and GET methods provided by World 
 
 And here are the security considerations provided by WC3 in regards to both POST and GET methods:
 
->####[15.1.3 Encoding Sensitive Information in URI's](https://www.w3.org/Protocols/rfc2616/rfc2616-sec15.html#sec15.1.3)
+>#### [15.1.3 Encoding Sensitive Information in URI's](https://www.w3.org/Protocols/rfc2616/rfc2616-sec15.html#sec15.1.3)
 
 >Because the source of a link might be private information or might reveal an otherwise private information source, it is strongly recommended that the user be able to select whether or not the Referer field is sent. For example, a browser client could have a toggle switch for browsing openly/anonymously, which would respectively enable/disable the sending of Referer and From information.
 
@@ -108,7 +108,7 @@ And here are the security considerations provided by WC3 in regards to both POST
 
 Taking both of these methods into consideration, we will be using GET methods for fetching data from a SharePoint list/library and POST for updating our lists/libraries.  You will see this when we go over requests in the next section.
 
-##Reading from a SharePoint List
+## Reading from a SharePoint List
 To perform any sort of data read/write in our SharePoint environment, we must construct a HTTP header, which is packaged and sent to the server via an Ajax call for processing.
 
 First we'll start with the SOAP envelope that performs the requested function and query to perform on the designated list.  We'll delve further into CAML queries in another post since they require a bit more patience.
@@ -200,4 +200,4 @@ From here, we now have an object that contains all of the fields returned from t
 
 That's it!  From here you can do what you need to with the returned data in your callback function.  Don't forget to pass the results to the callback arguments!
 
-##Writing to a SharePoint List
+## Writing to a SharePoint List
