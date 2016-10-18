@@ -60,9 +60,7 @@ jekyll-mentions:
 # !! You don't need to change any of the configuration flags below !!
 #
 
-markdown: redcarpet
-redcarpet:
-  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "strikethrough", "superscript", "with_toc_data"]
+markdown: kramdown
 highlighter: pygments
 permalink: pretty
 
@@ -76,7 +74,6 @@ sass:
 # Use the following plug-ins
 gems:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
-  - jekyll-toc
 
 # Exclude these files from your production _site
 exclude:
