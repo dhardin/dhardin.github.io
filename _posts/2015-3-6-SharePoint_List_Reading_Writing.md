@@ -201,3 +201,106 @@ From here, we now have an object that contains all of the fields returned from t
 That's it!  From here you can do what you need to with the returned data in your callback function.  Don't forget to pass the results to the callback arguments!
 
 ## Writing to a SharePoint List
+As with reading from a SharePoint list, we shall once again need to construct a SOAP Envelope.  This envelop needs to contain the SharePoint list GUID along with any updates that are to be made to the list.  These updates may be adds, deletes, or updating existing data.
+
+Here is a breakdown of each of the types of updates
+
+### Adds
+If we were to add just one new element, we would construct our SOAP envelope like so:
+
+ ```xml
+ <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+     <soap:Body>
+         <UpdateListItems xmlns="http://schemas.microsoft.com/sharepoint/soap/">
+          <listName>GUID GOES HERE</listName>
+            <updates>
+              <Batch OnError="Continue" ListVersion="1" ViewName="">
+                <Method ID="1" Cmd="New">
+                  <Field Name="ID">New</Field>
+                  <Field Name="Title"></Field>
+                </Method>
+              </Batch>
+            </updates>
+         </UpdateListItems>
+        </soap:Body>
+    </soap:Envelope>
+ ```
+
+ Inside the Batch element is where the methods will take place.  Each Method element contains the fields that you wish to set in the affiliated SharePoint list.  These are represented by the Field attribute, whre the Name property is set to the static SharePoint list column name.  You may get the SharePoint column's static name by going to the list's settings, clicking on the column name under Columns, and looking at the URL's query string for the Name attribute's value.
+
+The Field element with the Name attribute of "ID" is always set to "New" to identify that this is a new item being added to the list.
+
+ Now, if we were to add more than one new item, our SOAP envelope would look like the following:
+  ```xml
+ <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+     <soap:Body>
+         <UpdateListItems xmlns="http://schemas.microsoft.com/sharepoint/soap/">
+          <listName>GUID GOES HERE</listName>
+            <updates>
+              <Batch OnError="Continue" ListVersion="1" ViewName="">
+                <Method ID="1" Cmd="New">
+                  <Field Name="ID">New</Field>
+                  <Field Name="Title">Foo</Field>
+                </Method>
+                <Method ID="2" Cmd="New">
+                  <Field Name="ID">New</Field>
+                  <Field Name="Title">Bar</Field>
+                </Method>
+              </Batch>
+            </updates>
+         </UpdateListItems>
+        </soap:Body>
+    </soap:Envelope>
+ ```
+The difference between the the two envelopes is that the ID attribute in the method is incremented for each additional new item.
+
+### Update
+The Update method is very similar to the Add method except for that the ID attribute in the Field element needs to be set to an actual list eleemnt or else your web service will not complete successfully.
+ ```xml
+ <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+     <soap:Body>
+         <UpdateListItems xmlns="http://schemas.microsoft.com/sharepoint/soap/">
+          <listName>GUID GOES HERE</listName>
+            <updates>
+              <Batch OnError="Continue" ListVersion="1" ViewName="">
+                <Method ID="1" Cmd="Update">
+                  <Field Name="ID">23</Field>
+                  <Field Name="Title">More Foo</Field>
+                </Method>
+                <Method ID="2" Cmd="Update">
+                  <Field Name="ID">34</Field>
+                  <Field Name="Title">More Bar</Field>
+                </Method>
+              </Batch>
+            </updates>
+         </UpdateListItems>
+        </soap:Body>
+    </soap:Envelope>
+ ```
+
+### Delete
+The Delete method is much more simpler than the preivous methods as only Field element with the ID attribute is required.
+ ```xml
+ <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+     <soap:Body>
+         <UpdateListItems xmlns="http://schemas.microsoft.com/sharepoint/soap/">
+          <listName>GUID GOES HERE</listName>
+            <updates>
+              <Batch OnError="Continue" ListVersion="1" ViewName="">
+                <Method ID="1" Cmd="Delete">
+                  <Field Name="ID">23</Field>
+                </Method>
+                <Method ID="2" Cmd="Delete">
+                  <Field Name="ID">34</Field>
+                </Method>
+              </Batch>
+            </updates>
+         </UpdateListItems>
+        </soap:Body>
+    </soap:Envelope>
+ ```
+
+Once our SOAP envelope constructed, we'll pass that into our AJAX call's data property and use a POST method for security reasons and because of the data that we're passing in requires a CAML query.
+
+The GUID that we pass into the SOAP envelope is derived from the SharePoint list that we wish to get data from.  If you don't know how to do that, you can find out [here](https://nickgrattan.wordpress.com/2008/04/29/finding-the-id-guid-for-a-sharepoint-list/).
+
