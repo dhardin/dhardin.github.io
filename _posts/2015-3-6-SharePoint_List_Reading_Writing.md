@@ -304,3 +304,36 @@ Once our SOAP envelope constructed, we'll pass that into our AJAX call's data pr
 
 The GUID that we pass into the SOAP envelope is derived from the SharePoint list that we wish to get data from.  If you don't know how to do that, you can find out [here](https://nickgrattan.wordpress.com/2008/04/29/finding-the-id-guid-for-a-sharepoint-list/).
 
+### Multiple New/Update/Delete
+You can even combine multiple list updates at a time just by adding all of your methods for New, Update, and Delete methods inside of the Batch element.
+
+ ```xml
+ <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+     <soap:Body>
+         <UpdateListItems xmlns="http://schemas.microsoft.com/sharepoint/soap/">
+          <listName>GUID GOES HERE</listName>
+            <updates>
+              <Batch OnError="Continue" ListVersion="1" ViewName="">
+               <Method ID="1" Cmd="New">
+                  <Field Name="ID">New</Field>
+                  <Field Name="Title">Foo Bar</Field>
+                </Method>
+                <Method ID="2" Cmd="Update">
+                  <Field Name="ID">23</Field>
+                  <Field Name="Title">More Foo</Field>
+                </Method>
+                <Method ID="3" Cmd="Update">
+                  <Field Name="ID">34</Field>
+                  <Field Name="Title">More Bar</Field>
+                </Method>
+                <Method ID="4" Cmd="Delete">
+                  <Field Name="ID">23</Field>
+                </Method>
+                <Method ID="5" Cmd="Delete">
+                  <Field Name="ID">56</Field>
+              </Batch>
+            </updates>
+         </UpdateListItems>
+        </soap:Body>
+    </soap:Envelope>
+ ```
