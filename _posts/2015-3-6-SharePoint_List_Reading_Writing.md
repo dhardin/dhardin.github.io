@@ -224,7 +224,7 @@ If we were to add just one new element, we would construct our SOAP envelope lik
          </UpdateListItems>
         </soap:Body>
     </soap:Envelope>
- ```
+```
 
  Inside the Batch element is where the methods will take place.  Each Method element contains the fields that you wish to set in the affiliated SharePoint list.  These are represented by the Field attribute, whre the Name property is set to the static SharePoint list column name.  You may get the SharePoint column's static name by going to the list's settings, clicking on the column name under Columns, and looking at the URL's query string for the Name attribute's value.
 
@@ -252,7 +252,7 @@ The Field element with the Name attribute of "ID" is always set to "New" to iden
          </UpdateListItems>
         </soap:Body>
     </soap:Envelope>
- ```
+```
 The difference between the the two envelopes is that the ID attribute in the method is incremented for each additional new item.
 
 ### Update
@@ -278,7 +278,7 @@ The Update method is very similar to the Add method except for that the ID attri
          </UpdateListItems>
         </soap:Body>
     </soap:Envelope>
- ```
+```
 
 ### Delete
 The Delete method is much more simpler than the preivous methods as only Field element with the ID attribute is required.
@@ -301,7 +301,7 @@ The Delete method is much more simpler than the preivous methods as only Field e
          </UpdateListItems>
         </soap:Body>
     </soap:Envelope>
- ```
+```
 
 Once our SOAP envelope constructed, we'll pass that into our AJAX call's data property and use a POST method for security reasons and because of the data that we're passing in requires a CAML query.
 
@@ -339,4 +339,4 @@ You can even combine multiple list updates at a time just by adding all of your 
          </UpdateListItems>
         </soap:Body>
     </soap:Envelope>
- ```
+```
