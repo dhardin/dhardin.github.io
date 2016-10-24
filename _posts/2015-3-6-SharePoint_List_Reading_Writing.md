@@ -208,7 +208,7 @@ Here is a breakdown of each of the types of updates
 ### Adds
 If we were to add just one new element, we would construct our SOAP envelope like so:
 
- ```xml
+```xml
  <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
      <soap:Body>
          <UpdateListItems xmlns="http://schemas.microsoft.com/sharepoint/soap/">
@@ -231,7 +231,8 @@ If we were to add just one new element, we would construct our SOAP envelope lik
 The Field element with the Name attribute of "ID" is always set to "New" to identify that this is a new item being added to the list.
 
  Now, if we were to add more than one new item, our SOAP envelope would look like the following:
-  ```xml
+
+```xml
  <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
      <soap:Body>
          <UpdateListItems xmlns="http://schemas.microsoft.com/sharepoint/soap/">
@@ -256,7 +257,8 @@ The difference between the the two envelopes is that the ID attribute in the met
 
 ### Update
 The Update method is very similar to the Add method except for that the ID attribute in the Field element needs to be set to an actual list eleemnt or else your web service will not complete successfully.
- ```xml
+
+```xml
  <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
      <soap:Body>
          <UpdateListItems xmlns="http://schemas.microsoft.com/sharepoint/soap/">
@@ -280,7 +282,8 @@ The Update method is very similar to the Add method except for that the ID attri
 
 ### Delete
 The Delete method is much more simpler than the preivous methods as only Field element with the ID attribute is required.
- ```xml
+
+```xml
  <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
      <soap:Body>
          <UpdateListItems xmlns="http://schemas.microsoft.com/sharepoint/soap/">
@@ -307,7 +310,7 @@ The GUID that we pass into the SOAP envelope is derived from the SharePoint list
 ### Multiple New/Update/Delete
 You can even combine multiple list updates at a time just by adding all of your methods for New, Update, and Delete methods inside of the Batch element.
 
- ```xml
+```xml
  <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
      <soap:Body>
          <UpdateListItems xmlns="http://schemas.microsoft.com/sharepoint/soap/">
