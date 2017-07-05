@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Reading/Writing to a SharePoint list
-tags: [Front End Web Development SharePoint, Web Service, SOAP; XML, JavaScript, jQuery]
+tags: [Front End Web Development, SharePoint, Web Service, SOAP; XML, JavaScript, jQuery]
 ---
 
 ### CAUTION!
@@ -340,3 +340,5 @@ You can even combine multiple list updates at a time just by adding all of your 
         </soap:Body>
     </soap:Envelope>
 ```
+
+Now onto the JavaScript, as before, we'll create a function that build our SOAP Envelope, and makes an Ajax call to perform our updates to the SharePoint list.

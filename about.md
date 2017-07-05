@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Hey there, I'm Dustin :)  
+Hey there, I'm Dustin :)
 
 Here's some things you should know about me:
 
