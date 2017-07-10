@@ -63,10 +63,7 @@ Now if we click on one of the operations (e.g., GetListItems), the SOAP web serv
 
 
 [Expand Image](../../../../images/2015-3-6-SharePoint_List_Reading_Writing/getlistitems.png)
-[
-![Image of Get List Items SOAP Web Service Operation]
-(../../../../images/2015-3-6-SharePoint_List_Reading_Writing/getlistitems.png)
-](../../../../images/2015-3-6-SharePoint_List_Reading_Writing/getlistitems.png)
+![Image of Get List Items SOAP Web Service Operation](../../../../images/2015-3-6-SharePoint_List_Reading_Writing/getlistitems.png)
 
 As previoulsy mentioned, the XML shown defines the SOAP request and response bodies.  What does this mean though?  Well, the SOAP request is what you will bundle in an Ajax call and send to the server and the SOAP response is how the XML will be packaged when returned (if successfully...more on that in another post) back to you.
 
