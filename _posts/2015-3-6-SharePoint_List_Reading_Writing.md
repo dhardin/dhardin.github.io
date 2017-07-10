@@ -3,6 +3,8 @@ layout: post
 title: Reading/Writing to a SharePoint list
 tags: [Front End Web Development, SharePoint, Web Service, SOAP; XML, JavaScript, jQuery]
 ---
+* TOC
+{:toc}
 
 ### CAUTION!
 >Before venturing on further, if you are unfamiliar with web services and thier operations, please refer to the previous post: [SharePoint Web Services](http://dhardin.github.io/2015/03/05/SharePoint-WebServices)
