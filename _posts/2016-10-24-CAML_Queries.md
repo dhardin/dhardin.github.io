@@ -37,11 +37,11 @@ CAML queries will reside inside of whatever SOAP web service you're calling.  So
     </soap:Body>
 </soap:Envelope>
 ```
-And inside of the ```<Where>``` tag is where our actual query will reside.
+And inside of the ***<Where>*** tag is where our actual query will reside.
 
 Let's take a look at some of the value types and how we can use them to write our queries.
 
-####Integer
+#### Integer
 The Integer value type comes into play depending not only on the column type, but also the subtype of that column.
 
 For example, we have a Person and Group column in SharePoint but we can make that a multi or single person/group.  By using single, this will result in us using the Integer type in our person/group queries.
@@ -85,6 +85,6 @@ Another example, is if we're just looking up a simple ID of an item in a list.  
 ```
 
 
-####DateTime
-####Text
-####Lookup
+#### DateTime
+#### Text
+#### Lookup
