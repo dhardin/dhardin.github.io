@@ -6,7 +6,7 @@ tags: [Front End Web Development, SharePoint, Web Service, SOAP; XML]
 * TOC
 {:toc}
 
-The first thing you need to know about developing front end web applications for SharePoint are Web Services.
+<!--excerpt.start-->The first thing you need to know about developing front end web applications for SharePoint are Web Services.<!--excerpt.end-->
 
 ## What is a Web Service?
 >The term Web services describes a standardized way of integrating Web-based applications using the XML, SOAP, WSDL and UDDI open standards over an Internet protocol backbone. XML is used to tag the data, SOAP is used to transfer the data, WSDL is used for describing the services available and UDDI is used for listing what services are available. Used primarily as a means for businesses to communicate with each other and with clients, Web services allow organizations to communicate data without intimate knowledge of each other's IT systems behind the firewall.

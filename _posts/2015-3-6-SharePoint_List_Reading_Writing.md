@@ -9,7 +9,7 @@ tags: [Front End Web Development, SharePoint, Web Service, SOAP; XML, JavaScript
 ### CAUTION!
 >Before venturing on further, if you are unfamiliar with web services and thier operations, please refer to the previous post: [SharePoint Web Services](http://dhardin.github.io/2015/03/05/SharePoint-WebServices)
 
-Making web service calls through the SharePoint API can seem pretty daughnting if you are new to it.  There are varoius tools out there that help make this process less painful through abstraction and hiding all the details involved with building SOAP envelopes and parsing returned results.
+<!--excerpt.start-->Making web service calls through the SharePoint API can seem pretty daughnting if you are new to it.  There are varoius tools out there that help make this process less painful through abstraction and hiding all the details involved with building SOAP envelopes and parsing returned results.<!--excerpt.end-->
 
 I beleive its best to understand what goes on behind the curtains first so that we can understand exactly what our code is doing.
 
@@ -343,4 +343,101 @@ You can even combine multiple list updates at a time just by adding all of your 
     </soap:Envelope>
 ```
 
-Now onto the JavaScript, as before, we'll create a function that build our SOAP Envelope, and makes an Ajax call to perform our updates to the SharePoint list.
+Now onto the JavaScript, as before, we'll create a function that build our SOAP Envelope, and makes an Ajax call to perform our updates to the SharePoint list.  We've gone ahead and made our ajax call a seperate function so we don't have to worry about some of the options that will not be changing for us.
+
+```javascript
+   function updateData(adds, updates, deletes, successFunc, errorFunc) {
+        var guid = 'Your list GUID here.';
+        var updateXml = '';
+        var webServiceXMLPrefix: '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>';
+        var webServiceXMLSuffix: '</soap:Body></soap:Envelope>';
+
+        if (guid == undefined) {
+          return false;
+        }
+        updateXml = webServiceXMLPrefix + '<UpdateListItems xmlns="http://schemas.microsoft.com/sharepoint/soap/"> \
+                                          <listName>' + guid + '</listName> \
+                                            <updates> \
+                                                <Batch OnError="Continue" ListVersion="1" ViewName="">';
+        var count = 1;
+        if (adds != null) {
+            for (var i in adds) {
+                updateXml += '<Method ID="' + count + '" Cmd="New"> \
+                                                          <Field Name="ID">New</Field> \
+                                                          <Field Name="Title">' adds[i].title '</Field> \
+                                                    </Method>';
+                count++;
+            }
+        }
+        if (updates != null) {
+            for (var i in updates) {
+                updateXml += '<Method ID="' + count + '" Cmd="Update">\
+                                <Field Name="ID">' + updates[i].id + '</Field>\
+                                <Field Name="Title">' + updates[i].title + '</Field>\
+                            </Method>';
+                count++;
+            }
+        }
+        if (deletes != null) {
+            for (var i in deletes) {
+                updateXml += '<Method ID="' + count + '" Cmd="Delete"> \
+                                                          <Field Name="ID">' + deletes[i].id + '</Field> \
+                                                    </Method>';
+                count++;
+            }
+        }
+        updateXml += '</Batch> \
+                                            </updates> \
+                                        </UpdateListItems>' + webServiceXMLSuffix;
+
+        makeUpdateAjaxCall(qs.config.listServiceURL, updateXml, function(data, textStatus, jqXHR) {
+            var results = [];
+            var responseData = $(jqXHR.responseText).find('z\\:row');
+            //make results more friendly by building an array of objects where the key is the attribute name
+            //this helps so we don't have to define our own attribute names
+            results = processData(responseData);
+            successFunc(results);
+        }, errorFunc);
+    }
+
+    function makeUpdateAjaxCall(url, data, successFunc, errorFunc) {
+        $.ajax({
+            url: url,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("SOAPAction",
+                    "http://schemas.microsoft.com/sharepoint/soap/UpdateListItems");
+            },
+            type: 'POST',
+            dataType: 'xml',
+            data: data,
+            success: successFunc,
+            error: function(jqXHR, textStatus, errorThrown) {
+                if (errorFunc) { errorFunc(jqXHR, textStatus, errorThrown); }
+            },
+            contentType: 'text/xml; charset="utf-8"'
+        });
+    }
+
+    function processData(results) {
+        var attrObj = {},
+            data = [],
+            i, j, attribute;
+
+        //repackage data into an array which each index
+        //is an object with key value pairs
+        for (i = 0; i < results.length; i++) {
+            attrObj = {};
+            if (!results[i].attributes) {
+                continue;
+            }
+            for (j = 0; j < results[i].attributes.length; j++) {
+                attribute = results[i].attributes[j];
+                attrObj[attribute.name.toLowerCase()] = attribute.value.replace('\\', '/');
+            }
+            data.push(attrObj);
+        }
+        return data;
+    }
+```
+
+That's it!  Now we can read and write to SharePoint lists.
