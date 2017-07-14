@@ -37,7 +37,7 @@ CAML queries will reside inside of whatever SOAP web service you're calling.  So
     </soap:Body>
 </soap:Envelope>
 ```
-And inside of the **<Where>* tag is where our actual query will reside.
+And inside of the **<Where>** tag is where our actual query will reside.
 
 Let's take a look at some of the value types and how we can use them to write our queries.
 
